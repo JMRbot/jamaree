@@ -1,11 +1,17 @@
 from flask import Flask, request, abort,render_template
-from linebot import (LineBotApi, WebhookHandler)
-from linebot.exceptions import (InvalidSignatureError)
-from linebot.models import (MessageEvent, TextMessage, TextSendMessage,)
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
+)
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('N4kCT4UGSMje9XY+uyNpfUi0nlckUra0V3elrwaj793DRMS6em/+0CrR6h+lQIQ9wtSC9rPi5nNP4AmduZAbY8pAWGVrY2Lmh/nDAbEkWduz2hjlZrQoCk1x5JUg2YpIqSChAZzbCARwvH/F39zOIgdB04t89/1O/w1cDnyilFU=')
+line_bot = LineBotApi('N4kCT4UGSMje9XY+uyNpfUi0nlckUra0V3elrwaj793DRMS6em/+0CrR6h+lQIQ9wtSC9rPi5nNP4AmduZAbY8pAWGVrY2Lmh/nDAbEkWduz2hjlZrQoCk1x5JUg2YpIqSChAZzbCARwvH/F39zOIgdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('962ec561c6812dacfb9c4e916de5f428')
 
 @app.route("/")
