@@ -79,10 +79,7 @@ pyasn1==0.4.2
 pyasn1-modules==0.2.1
 pydotplus==2.0.2
 pymongo==3.6.0
-PyMySQL==0.8.0
-pyodbc==4.0.22
 pyparsing==2.2.0
-PyQt5==5.10.1
 pyreadline==2.1
 pythainlp==1.5.4.2
 python-dateutil==2.6.1
@@ -104,7 +101,6 @@ scipy==1.1.0
 sip==4.19.8
 six==1.11.0
 smart-open==1.5.6
-SQLAlchemy==1.2.2
 tensorboard==1.6.0
 tensorflow==1.2.1
 tensorflow-gpu==1.6.0
