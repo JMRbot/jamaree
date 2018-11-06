@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+  <head lang="th">
+	<meta charset="UTF-8">
+    <!--<link rel="stylesheet" type="text/css" href="/static/style.css">-->
+	<link href="https://fonts.googleapis.com/css?family=Itim" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Itim|Mali" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<title>Jamaree Chatbot for MSU</title>
+	<style>
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Itim', cursive;
+	box-sizing: border-box;
+	
+}
+body {
+	background: #EEEED1;
+}
+.chatbox {
+	width: 60%;
+	min-width: 300px;
+	height: 580px;
+	background: #FFEC8B;
+	padding: 25px;
+	margin: 20px auto;
+	box-shadow: 0 3px 3px 3px; 
+	border-radius: 30px;
+}
+
+.chatlogs {
+	padding: 10px;
+	width: 100%;
+	height: 450px;
+	background: #f2f2f2;
+	
+	background-image: url('https://scontent.fbkk1-6.fna.fbcdn.net/v/t1.0-9/44211090_1989912564408528_4173185804719357952_n.jpg?_nc_cat=108&_nc_ht=scontent.fbkk1-6.fna&oh=c404eaf779f2564767e4bee188181b4b&oe=5C5BBA48');
+	background-position: center;
+	background-repeat: no-repeat;
+	<!--background-width: 10%;
+	background-height: 15%;
+	
+	overflow-x: hidden;-->
+	overflow-x: auto;
+	overflow-y: scroll;
+
+             
+	border-radius: 20px;
+	margin-top: 5px;
+}
+.chatlogs::-webkit-scrollbar {
+	width: 10px;
+	
+}
+.chatlogs::-webkit-scrollbar-thumb {
+	border-radius: 30px;
+	background: rgba(0,0,0,.1);
+}
+
+H1 {
+    color: black;
+    <!--margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+    font-size: 40px;-->
+}
+
+<!--h3 {
+    color: gray;
+    font-size: 20px;
+    margin-top: 3px;
+    text-align: center;
+}-->
+#boxchat {
+    <!--margin-left: auto;
+    margin-right: auto;-->
+    width: 40%;
+    margin-top: -8px;
+}
+#userInput {
+    <!--margin-left: auto;
+    margin-right: auto;-->
+    width: 40%;
+    margin-top: 30px;
+}
+#textInput {
+    <!--width: 70%;
+	height: 20%;
+    border: none;
+    border-bottom: 3px solid #009688;
+    font-size: 17px;-->
+	font-family: 'Itim', cursive;
+	background: #fbfbfb;
+	width: 81%;
+	height: 50px;
+	border: 2px solid #eee;
+	border-radius: 20px;
+	resize: none;
+	margin-top: -5px;
+	margin-bottom: 10px;
+}
+#buttonInput {
+    padding: 2px;
+    font-family: 'Itim', cursive;
+    font-size: 20px;
+	width: 15%;	
+	height: 60px;
+	border-radius: 10px;
+	margin-left: 10px;
+	margin-top: -5px;
+	cursor: pointer;
+	background: #eee;
+	margin-bottom: 10px;
+}
+#buttonInput:hover {
+	background: #24c80a;
+}
+.userText {
+    color: black;
+    font-family: 'Itim', cursive;
+    font-size: 17px;
+    text-align: right;
+    line-height: 45px;
+}
+.userText span {
+    background-color: #ff0;
+    padding: 7px;
+    border-radius: 10px;
+	margin-top: 12px;
+}
+
+.botText {
+    color: white;
+    font-family: 'Itim', cursive;
+    font-size: 17px;
+    text-align: left;
+    line-height: 30px;
+}
+
+.botText span {
+    background-color: #737373;
+    padding: 7px;
+    border-radius: 10px;
+	margin-left: 40px;
+	margin-top: 12px;
+	margin-bottom: 20px;
+}
+
+.Hphoto {
+	width: 166px;
+	height: 180px;
+	border-radius: 50%;
+	overflow: hidden;
+	<!--margin-left: 44%;-->
+}
+
+.Hphoto img{
+	width: 100%;
+	margin: auto auto;
+	display: block;
+}
+
+.chat .user_photo {
+	width: 30px;
+	height: 30px;
+	background: #ccc;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.chat .user_photo img {
+	width: 100%;
+}
+
+.headD {
+	height: 160px;
+}
+
+.foot {
+	height: 90px;
+	background: #696969;
+}
+
+.foot p {
+	color: white;
+	font-family: 'Mali', cursive;
+}
+
+.botimg {
+	width: 80%;
+	height: 90%;
+}
+
+.li {
+	color: white;
+}
+
+<!--.header img {
+	align: center;
+}-->
+
+</style>
+  </head>
+  <body>
+    <header class="headD">
+	<table width="100%">
+		<tr>
+			<td align="right">
+				<br/>
+				<div class="Hphoto">
+					<img src="https://i.pinimg.com/originals/0e/7e/45/0e7e455acd85a78e7d046fd137c38a26.png" class="botimg"></img>
+				</div>
+			</td>
+			<td>
+				<p><B><font size="6" face="verdana" color="green"> JAMAREE CHATBOT Ver.1</font></B></p><br/>
+				<p><B> โปรแกรมโต้ตอบอัตโนมัติจามรี เวอร์ชัน 1 </B></p>
+				<p><font size="2"> เป็นแชทบอทตอบคำถามข้อมูลเกี่ยวกับมหาวิทยาลัย มหาสารคาม</font></p>
+				<p><font size="2">เรื่อง	1) งานทะเบียนและประมวลผล</font></p>
+				<p><font size="2">&emsp;&emsp;2) งานกองทุนให้กู้ยืมเพื่อการศึกษา (กยศ.)</font></p>
+				<p><font size="2">&emsp;&emsp;3) สภาพแวดล้อมภายในมหาวิทยาลัย</font></p>
+			</td>
+		</tr>
+	</table>
+	</header>
+    <!--<hr>-->
+    <br/>
+	<section>
+	<div class="chatbox">
+      <div class="chatlogs" id="boxchat">
+		<div class="chat">
+			<div class="user_photo">
+				<img src="http://free-icon-download.com/modules/PDdownloads/images/screenshots/free-icon-download-elk-illustration.png"/>
+			</div>
+			<p class="botText"><span>สวัสดี</span></p>
+			
+		</div>
+      </div>
+      <div id="userInput" class="chat-form">
+        <input id="textInput" type="textarea" name="msg" placeholder="   พิมพ์ข้อความ...">
+        <input id="buttonInput" type="submit" value="ส่ง">	
+      </div>
+      <script>
+        function getBotResponse() {
+			var rawText = $("#textInput").val();
+			var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+			$("#textInput").val("");
+			$("#boxchat").append(userHtml);
+		  
+			var messageBody = document.querySelector('#boxchat');
+			messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+
+			$.get("/get", { msg: rawText }).done(function(data) {
+            var botHtml = '<div class="chat"><div class="user_photo" width="30px" height="30px" border-radius="50%" overflow="hidden"><img src="http://free-icon-download.com/modules/PDdownloads/images/screenshots/free-icon-download-elk-illustration.png" width="100%"></div> <p class="botText"><span>' + data + '</span></p></div>';
+            $("#boxchat").append(botHtml);
+
+			var messageBody = document.querySelector('#boxchat');
+			messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+		  
+		  });
+        }
+        $("#textInput").keypress(function(e) {
+            if(e.which == 13 && document.getElementById('textInput').value != "" ) {
+                getBotResponse();
+				
+				var el = document.getElementById('userInput');
+				el.focus();
+            }
+			//else {
+			//	alert('ป้อนข้อความของคุณ');
+			//}
+        });
+        $("#buttonInput").click(function() {
+			if(document.getElementById('textInput').value != "" ) {
+                getBotResponse();
+				
+				var el = document.getElementById('userInput');
+				el.focus();
+            }
+			//else {
+			//	alert('ป้อนข้อความของคุณ');
+			//}
+          //getBotResponse();
+        })
+      </script>
+    </div>
+	</section>
+	<footer class="foot">
+		<br/>
+		<p align="center" color="white">Faculty of Informatics. Computer Science.</p>
+		<p align="center" color="white">Mahasarakham University</p>
+		<p align="center"><a href="http://www.web.msu.ac.th" target="_blank" class="li">www.msu.ac.th</a></p>
+	</footer>
+  </body>
+</html>

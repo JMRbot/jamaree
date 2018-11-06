@@ -1,0 +1,168 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: tahoma, sans-serif;
+	box-sizing: border-box;
+}
+
+body {
+	background: #1ddced;
+}
+.chatbox {
+	width: 500px;
+	min-width: 390px;
+	height: 600px;
+	background: #fff;
+	padding: 25px;
+	margin: 20px auto;
+	box-shadow: 0 3px;
+	border-radius: 30px;
+}
+
+.chatlogs {
+	padding: 10px;
+	width: 100%;
+	height: 450px;
+	background: #eee;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	border-radius: 20px;
+}
+
+
+.chatlogs::-webkit-scrollbar {
+	width: 10px;
+}
+
+.chatlogs::-webkit-scrollbar-thumb {
+	border-radius: 30px;
+	background: rgba(0,0,0,.1);
+}
+
+/*h1 {
+    color: black;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
+    font-size: 40px;
+}
+
+h3 {
+    color: gray;
+    font-size: 20px;
+    margin-top: 3px;
+    text-align: center;
+}*/
+
+#boxchat {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    width: 40%;
+    margin-top: 5px;
+}
+
+#userInput {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    width: 40%;
+    margin-top: 30px;
+}
+
+#textInput {
+    /*width: 70%;
+	height: 20%;
+    border: none;
+    border-bottom: 3px solid #009688;
+    font-family: monospace;
+    font-size: 17px;*/
+	background: #fbfbfb;
+	width: 75%;
+	height: 50px;
+	border: 2px solid #eee;
+	border-radius: 3px;
+	resize: none;
+	
+}
+
+#buttonInput {
+    padding: 2px;
+    font-family: monospace;
+    font-size: 17px;
+	width: 20%;	
+	height: 60px;
+	border-radius: 10px;
+	margin-left: 15px;
+	cursor: pointer;
+	background: #eee;
+}
+
+#buttonInput:hover {
+	
+	background: #13c8d9;
+}
+
+/*.chat-form button {
+	background: #1ddced;
+	padding: 5px 15px;
+	font-size: 30px;
+	color: #fff;
+	border: none;
+	margin: 0 10px;
+	border-radius: 3px;
+	box-shadow: 0 3px 0 #0eb2c1;
+	font-family: monospace;
+    font-size: 17px;
+}*/
+
+
+.userText {
+    color: black;
+    font-family: monospace;
+    font-size: 17px;
+    text-align: right;
+    line-height: 30px;
+}
+
+.userText span {
+    background-color: #ff0;
+    padding: 7px;
+    border-radius: 10px;
+	margin-top: 10px;
+	
+}
+
+.botText {
+    color: white;
+    font-family: monospace;
+    font-size: 17px;
+    text-align: left;
+    line-height: 30px;
+}
+
+.botText span {
+    background-color: #737373;
+    padding: 7px;
+    border-radius: 10px;
+	margin-left: 40px;
+	
+	
+}
+
+.chat .user_photo {
+	width: 30px;
+	height: 30px;
+	background: #ccc;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.chat .user_photo img {
+	width: 100%;
+}
+
+/*#tidbit {
+    position:absolute;
+    bottom:0;
+    right:0;
+    width: 300px;
+}*/
