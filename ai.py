@@ -51,50 +51,30 @@ def one_hot_encode(X, max_int):
 
 # invert encoding
 def invert(seq):
-    print('seq',seq)
     strings = list()
     for pattern in seq:
-        print('pattern',pattern)
-        print('rrr',np.argmax(pattern))
         string = int_to_word_input[np.argmax(pattern)]
-        print('string',string)
         if(string!="padd"):
             strings.append(string)
-##        else:
-        print('string',string)
-##    return ' '.join(strings)
     return strings
 
 # สร้าง target ที่เกิดขึ้นตามลำดับ
 def predict_sequence(infenc, infdec, source, n_steps, cardinality):
-##    print('infenc',infenc)
-##    print('infdec',infdec)
-##    print('source',source)
-##    print('n_steps',n_steps)
-##    print('cardinality',cardinality)
     # encode
     state = infenc.predict(source)
-##    print('state',state)
     # start of sequence input
     target_seq = array(one_hot_encode(array([[word_to_int_input["_"]]]),encoded_length))
-##    print('target_seq',target_seq)
     # collect predictions
     output = list()
     for t in range(n_steps):
         # predict next char
         yhat, h, c = infdec.predict([target_seq] + state)
-##        print('yhat',yhat)
-##        print('h',h)
-##        print('c',c)
         # store prediction
         output.append(yhat[0,0,:])
-##        print('output',output)
         # update state
         state = [h, c]
-##        print('state',state)
         # update target sequence
         target_seq = yhat
-##        print('target_seq',target_seq)
     return array(output)
 
 # load integer encoding dict
@@ -114,40 +94,35 @@ infenc.load_weights("model_enc.h5")
 infdec.load_weights("model_dec.h5")
 
 # เริ่ม chatbot ทำงาน
-##while True:
 def Chatbot(input_data):
     checkword=[]
-##    input_data=input("x : ") ##รับข้อมูลคำถาม
+    ##รับข้อมูลคำถาม input_data
     input_data = deepcut.tokenize(input_data) ##ตัดคำที่รับเข้ามาด้วย deepcut
     ##['สวัสดี']
-    for check in input_data:
-        if check in word_to_int_input:
-            print('check',check)
-            checkword.append(check)
-    print('w',checkword)
-##        print('check',check)
-##    print('word_to_int_input',word_to_int_input)
-    checkword=[word_to_int_input[word] for word in checkword]
-##    print('word_to_int_input',word_to_int_input)
-##    print('input_data',input_data)
-    checkword=np.array([checkword])
-##    print('np input_data',input_data)
-    checkword = sequence.pad_sequences(checkword, maxlen=10,padding='post')
-##    print('input_data',input_data)
-    checkword=one_hot_encode(checkword,encoded_length)
-##    print('input_data one_hot_encode',input_data)
-    checkword=array(checkword)
-##    print('input_data array',input_data)
- ##แก้   target = predict_sequence(infenc, infdec, checkword, 24, encoded_length)
-    target = predict_sequence(infenc, infdec, checkword,10, encoded_length)  
-    print('target ',target)
-    print('bot',invert(target))
-    words=""
-    for word in invert(target):
-        words = words+word
-    input_data = ""
-    return words
-
-cc = Chatbot("บัตรนิสิตหายครับจริงค่ะ")
+    if input_data[0] != "สวัสดี":
+        for check in input_data:
+            if check in word_to_int_input:
+                print('check',check)
+                checkword.append(check)
+    ##    print('w',checkword)
+        checkword=[word_to_int_input[word] for word in checkword]
+        checkword=np.array([checkword])
+        checkword = sequence.pad_sequences(checkword, maxlen=10,padding='post')
+        checkword=one_hot_encode(checkword,encoded_length)
+        checkword=array(checkword)
+     ##แก้   target = predict_sequence(infenc, infdec, checkword, 24, encoded_length)
+        target = predict_sequence(infenc, infdec, checkword,10, encoded_length)  
+        print('target ',target)
+        print('bot',invert(target))
+        words=""
+        for word in invert(target):
+            words = words+word
+        input_data = ""
+        return words
+    else:
+        words = "สวัสดี"
+        return words
+        
+##cc = Chatbot("บัตรนิสิตหาย")
 ##print("cc", cc)
         
