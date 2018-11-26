@@ -63,7 +63,7 @@ def predict_sequence(infenc, infdec, source, n_steps, cardinality):
     # encode
     state = infenc.predict(source)
     # start of sequence input
-    target_seq = array(one_hot_encode(array([[word_to_int_input["_"]]]),encoded_length))
+    target_seq = array(one_hot_encode(array([[word_to_int_input["<go>"]]]),encoded_length))
     # collect predictions
     output = list()
     for t in range(n_steps):
