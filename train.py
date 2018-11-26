@@ -28,12 +28,12 @@ def one_hot_encode(y, max_int):
 
  #returns train, inference_encoder and inference_decoder models
 def define_models(n_input, n_output, n_units):
-    # define training encoder / กำหนดตัวเข้ารหัสการเทรน
+    # encoder model / กำหนดตัวเข้ารหัสการเทรน
     encoder_inputs = Input(shape=(None, n_input))
     encoder = LSTM(n_units, return_state=True)
     encoder_outputs, state_h, state_c = encoder(encoder_inputs)
     encoder_states = [state_h, state_c]
-    # define training decoder
+    # decoder model
     decoder_inputs = Input(shape=(None, n_output))
     decoder_lstm = LSTM(n_units, return_sequences=True, return_state=True)
     decoder_outputs, _, _ = decoder_lstm(decoder_inputs, initial_state=encoder_states)
@@ -61,11 +61,11 @@ X2=[]
 Y=[]
 
 # number of timesteps for encoder and decoder
-n_in = 10
-n_out = 20
+n_in = 40
+n_out = 50
 
 # อ่านไฟล์
-data=open("dataQA.txt","r").read()
+data=open("DTS.txt","r").read()
 for i in data.split("\n\n"):
     a=i.split("\n")
     question=a[0]
@@ -75,15 +75,15 @@ for i in data.split("\n\n"):
 
 vocab=[]
 # สร้าง dic
-word=open("vocab.txt","r").read().split("\n")
+word=open("vocab2.txt","r").read().split("\n")
 for wd in word:
     vocab.append(wd)
 word_to_int_input = dict((c, i+2) for i, c in enumerate(vocab))
 int_to_word_input = dict((i+2, c) for i, c in enumerate(vocab))
 word_to_int_input.update({"padd":0})
 int_to_word_input.update({0:"padd"})
-word_to_int_input.update({"_":1})
-int_to_word_input.update({1:"_"})
+word_to_int_input.update({"<go>":1})
+int_to_word_input.update({1:"<go>"})
 
 encoded_length = len(word_to_int_input)
 # เข้ารหัสคำถาม
@@ -104,7 +104,7 @@ for sentence in dataY:
 for sentence in dataY:
     sentence=deepcut.tokenize(sentence)
     sentence = [word for word in sentence]
-    sentence.insert(0,"_") #แทรก_ ลงไปไว้ตัวแรก
+    sentence.insert(0,"<go>") #แทรก_ ลงไปไว้ตัวแรก
     sentence=sentence[0:len(sentence)-1]
     X2.append([word_to_int_input[word] for word in sentence])
 
@@ -132,16 +132,16 @@ print(train.summary())
 train.fit([X1, X2], Y, epochs=2000)
 
 # saving model บันทึก
-infenc.save_weights("model_enc.h5")
+infenc.save_weights("model_encode.h5")
 print("Saved model to disk")
-infdec.save_weights("model_dec.h5")
+infdec.save_weights("model_decode.h5")
 print("Saved model to disk")
 
 # saving integer encodings dict
-save_word_features = open("word_to_int_input.pickle","wb")
+save_word_features = open("word_to_int.pickle","wb")
 pickle.dump(word_to_int_input, save_word_features)
 save_word_features.close()
-save_word_features = open("int_to_word_input.pickle","wb")
+save_word_features = open("int_to_word.pickle","wb")
 pickle.dump(int_to_word_input, save_word_features)
 save_word_features.close()
 
