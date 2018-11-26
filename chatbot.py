@@ -93,12 +93,10 @@ train, infenc, infdec = define_models(encoded_length, encoded_length, 256)
 infenc.load_weights("model_encode.h5")
 infdec.load_weights("model_decode.h5")
 
-# เริ่ม chatbot ทำงาน
+# chatbot เริ่ม ทำงาน
 def Chatbot(input_data):
     checkword=[]
-    ##รับข้อมูลคำถาม input_data
-    input_data = deepcut.tokenize(input_data) ##ตัดคำที่รับเข้ามาด้วย deepcut
-    ##['สวัสดี']
+    input_data = deepcut.tokenize(input_data) ##ตัดคำที่รับเข้ามาด้วย deepcut    ##['สวัสดี']
     if input_data[0] != "สวัสดี":
         for check in input_data:
             if check in word_to_int_input:
