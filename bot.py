@@ -22,7 +22,7 @@ def home():
 def get_bot_response():
     userText = request.args.get('msg')
     if userText != "":
-        from ai import Chatbot
+        from chatbot import Chatbot
         chat = Chatbot(userText)
     return str(chat)
 
@@ -48,7 +48,7 @@ def handle_message(event):
     content = "{}".format(event.message.text)
     print("line_message : ",content)
     if content != "":
-        from ai import Chatbot
+        from chatbot import Chatbot
         chat = Chatbot(content)
 ##        print("hi",chat)
         line_bot.reply_message(

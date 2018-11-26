@@ -9,7 +9,7 @@ from keras.layers import LSTM
 from keras.layers import Dense
 from sklearn.model_selection import train_test_split
 import nltk
-from nltk import word_tokenize
+##from nltk import word_tokenize
 import pickle
 from keras.preprocessing import sequence
 import deepcut
@@ -124,12 +124,12 @@ X2=array(X2)
 Y=array(Y)
 
 # define model
-train, infenc, infdec = define_models(encoded_length, encoded_length, 128)
+train, infenc, infdec = define_models(encoded_length, encoded_length, 256)
 train.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
 print(train.summary())
 
 # train model
-train.fit([X1, X2], Y, epochs=1500)
+train.fit([X1, X2], Y, epochs=2000)
 
 # saving model บันทึก
 infenc.save_weights("model_enc.h5")
