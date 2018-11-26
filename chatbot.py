@@ -102,7 +102,7 @@ def Chatbot(input_data):
     if input_data[0] != "สวัสดี":
         for check in input_data:
             if check in word_to_int_input:
-                print('check',check)
+                #print('check',check)
                 checkword.append(check)
     ##    print('w',checkword)
         checkword=[word_to_int_input[word] for word in checkword]
@@ -112,8 +112,8 @@ def Chatbot(input_data):
         checkword=array(checkword)
      ##แก้   target = predict_sequence(infenc, infdec, checkword, 24, encoded_length)
         target = predict_sequence(infenc, infdec, checkword,10, encoded_length)  
-        print('target ',target)
-        print('bot',invert(target))
+        #print('target ',target)
+        #print('bot',invert(target))
         words=""
         for word in invert(target):
             words = words+word
