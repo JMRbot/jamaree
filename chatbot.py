@@ -96,13 +96,14 @@ infdec.load_weights("model_decode.h5")
 # chatbot เริ่ม ทำงาน
 def Chatbot(input_data):
     checkword=[]
+    print('user_w',input_data)
     input_data = deepcut.tokenize(input_data) ##ตัดคำที่รับเข้ามาด้วย deepcut    ##['สวัสดี']
     if input_data[0] != "สวัสดี":
         for check in input_data:
             if check in word_to_int_input:
                 #print('check',check)
                 checkword.append(check)
-    ##    print('w',checkword)
+##        print('w',checkword)
         checkword=[word_to_int_input[word] for word in checkword]
         checkword=np.array([checkword])
         checkword = sequence.pad_sequences(checkword, maxlen=40,padding='post')
