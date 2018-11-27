@@ -121,6 +121,7 @@ def Chatbot(input_data):
     else:
         words = "สวัสดี"
         return words
+    print("bot_m = ",words)
         
 ##cc = Chatbot("บัตรนิสิตหาย")
 ##print("cc", cc)
