@@ -110,7 +110,7 @@ def Chatbot(input_data):
         checkword=one_hot_encode(checkword,encoded_length)
         checkword=array(checkword)
      ##แก้   target = predict_sequence(infenc, infdec, checkword, 24, encoded_length)
-        target = predict_sequence(infenc, infdec, checkword,10, encoded_length)  
+        target = predict_sequence(infenc, infdec, checkword,15, encoded_length)  
         #print('target ',target)
         #print('bot',invert(target))
         words=""
